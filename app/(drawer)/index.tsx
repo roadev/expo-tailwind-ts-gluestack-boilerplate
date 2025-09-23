@@ -13,22 +13,22 @@ export default function Home() {
         <View className="w-full max-w-sm space-y-4">
           <TouchableOpacity
             className="items-center rounded-lg bg-blue-500 px-6 py-4"
-            onPress={() => router.navigate('/settings')}>
-            <Text className="text-lg font-semibold text-white">Go to Settings</Text>
+            onPress={() => router.push('/profile')}>
+            <Text className="text-lg font-semibold text-white">Go to Profile</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             className="items-center rounded-lg bg-green-500 px-6 py-4"
-            onPress={() => router.navigate('/profile')}>
-            <Text className="text-lg font-semibold text-white">Go to Profile</Text>
+            onPress={() => router.push('/settings')}>
+            <Text className="text-lg font-semibold text-white">Go to Settings</Text>
           </TouchableOpacity>
         </View>
 
         <View className="mt-12 w-full max-w-sm rounded-lg bg-gray-50 p-6">
           <Text className="mb-2 text-lg font-semibold text-gray-700">Quick Start</Text>
           <Text className="text-center text-gray-600">
-            This is a clean boilerplate for your Expo app with drawer navigation. Use the menu
-            button to navigate between screens!
+            This is a clean boilerplate for your Expo app with drawer navigation. Use the hamburger
+            menu button to navigate between screens!
           </Text>
         </View>
       </View>

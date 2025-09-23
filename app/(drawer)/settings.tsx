@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
-import { Link } from 'expo-router';
+import { View, Text, ScrollView } from 'react-native';
 
 export default function Settings() {
   return (
@@ -36,7 +35,7 @@ export default function Settings() {
 
         <View className="mt-8 rounded-lg bg-gray-50 p-4">
           <Text className="text-center text-gray-600">
-            Use the menu button to navigate between screens.
+            Use the drawer menu to navigate between screens.
           </Text>
         </View>
       </View>
