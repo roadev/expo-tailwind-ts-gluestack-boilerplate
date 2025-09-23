@@ -19,9 +19,7 @@ A modern, feature-rich Expo React Native boilerplate with TypeScript, TailwindCS
 ```bash
 ├── app/                          # Expo Router screens and layouts
 │   ├── _layout.tsx               # Root layout with navigation
-│   ├── index.tsx                 # Home screen
 │   ├── (drawer)/                 # Drawer navigation group
-│   ├── auth/                     # Authentication screens
 │   └── global.css               # Global styles
 ├── src/                          # Main source code
 │   └── services/                 # Business logic and API services
@@ -57,7 +55,6 @@ A modern, feature-rich Expo React Native boilerplate with TypeScript, TailwindCS
 
 ### Navigation & Routing
 - **Expo Router**: ~6.0.8
-- **React Navigation**: 7.1.8 (Native), 7.5.0 (Drawer)
 
 ### Styling & UI
 - **NativeWind**: ^4.2.1

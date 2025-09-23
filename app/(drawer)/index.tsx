@@ -23,14 +23,6 @@ export default function Home() {
             <Text className="text-lg font-semibold text-white">Go to Settings</Text>
           </TouchableOpacity>
         </View>
-
-        <View className="mt-12 w-full max-w-sm rounded-lg bg-gray-50 p-6">
-          <Text className="mb-2 text-lg font-semibold text-gray-700">Quick Start</Text>
-          <Text className="text-center text-gray-600">
-            This is a clean boilerplate for your Expo app with drawer navigation. Use the hamburger
-            menu button to navigate between screens!
-          </Text>
-        </View>
       </View>
     </ScrollView>
   );

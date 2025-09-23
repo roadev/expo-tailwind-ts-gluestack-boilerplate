@@ -1,7 +1,6 @@
 import { Drawer } from 'expo-router/drawer';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { useRouter, usePathname } from 'expo-router';
-import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { Ionicons } from '@expo/vector-icons';
 
 function HomeIcon({ color, size }: { color: string; size: number }) {
@@ -20,50 +19,63 @@ function CustomDrawerContent() {
   const router = useRouter();
   const pathname = usePathname();
 
+  const MenuItem = ({
+    label,
+    icon: Icon,
+    route,
+    isActive,
+  }: {
+    label: string;
+    icon: React.ComponentType<{ color: string; size: number }>;
+    route: string;
+    isActive: boolean;
+  }) => (
+    <TouchableOpacity
+      className={`flex-row items-center px-4 py-3 mx-2 rounded-lg ${
+        isActive ? 'bg-blue-500' : 'bg-transparent'
+      }`}
+      onPress={() => router.push(route)}
+    >
+      <Icon color={isActive ? '#ffffff' : '#6b7280'} size={20} />
+      <Text
+        className={`ml-3 text-base font-medium ${
+          isActive ? 'text-white' : 'text-gray-700'
+        }`}
+      >
+        {label}
+      </Text>
+    </TouchableOpacity>
+  );
+
   return (
-    <DrawerContentScrollView className="bg-white">
+    <ScrollView className="flex-1 bg-white">
       <View className="border-b border-gray-200 p-6">
         <Text className="text-xl font-bold text-gray-800">MyApp</Text>
       </View>
 
       <View className="mt-4">
-        <DrawerItem
-          activeTintColor="#3b82f6"
-          focused={pathname === '/'}
-          icon={HomeIcon}
-          inactiveTintColor="#6b7280"
+        <MenuItem
           label="Home"
-          onPress={() => router.push('/')}
-          style={{
-            backgroundColor: pathname === '/' ? '#eff6ff' : 'transparent',
-          }}
+          icon={HomeIcon}
+          route="/"
+          isActive={pathname === '/'}
         />
 
-        <DrawerItem
-          activeTintColor="#3b82f6"
-          focused={pathname === '/profile'}
-          icon={ProfileIcon}
-          inactiveTintColor="#6b7280"
+        <MenuItem
           label="Profile"
-          onPress={() => router.push('/profile')}
-          style={{
-            backgroundColor: pathname === '/profile' ? '#eff6ff' : 'transparent',
-          }}
+          icon={ProfileIcon}
+          route="/profile"
+          isActive={pathname === '/profile'}
         />
 
-        <DrawerItem
-          activeTintColor="#3b82f6"
-          focused={pathname === '/settings'}
-          icon={SettingsIcon}
-          inactiveTintColor="#6b7280"
+        <MenuItem
           label="Settings"
-          onPress={() => router.push('/settings')}
-          style={{
-            backgroundColor: pathname === '/settings' ? '#eff6ff' : 'transparent',
-          }}
+          icon={SettingsIcon}
+          route="/settings"
+          isActive={pathname === '/settings'}
         />
       </View>
-    </DrawerContentScrollView>
+    </ScrollView>
   );
 }
 
