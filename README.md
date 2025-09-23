@@ -1,39 +1,81 @@
-# MyApp - Expo Boilerplate
+# Expo Tailwind TypeScript GlueStack Boilerplate
 
-A clean, generic Expo React Native boilerplate with Expo Router, ready for development.
+A modern, feature-rich Expo React Native boilerplate with TypeScript, TailwindCSS, GlueStack UI, and Expo Router for file-based routing.
 
 ## Features
 
-- 🚀 **Expo Router** for file-based routing
-- 📱 **React Native** with TypeScript
-- 🎨 **TailwindCSS** for styling
-- 🧩 **GlueStack UI** components
-- 📦 **Modular architecture** ready for state management, API integration, and more
+- 🚀 **Expo SDK 54** - Latest Expo platform with React Native 0.81.4
+- 📱 **React Native 0.81.4** with TypeScript 5.9
+- 🎨 **NativeWind 4.2.1** - TailwindCSS for React Native with custom font support
+- 🧩 **GlueStack UI 3.0** - Modern component library with accessibility
+- 🧭 **Expo Router 6.0** - File-based routing with nested navigation
+- 🎯 **React Navigation 7** - Latest navigation with drawer support
+- ⚡ **React Native Reanimated 4.1** - High-performance animations
+- 🎨 **Tailwind Variants** - Type-safe styling utilities
+- 📦 **Modular Architecture** - Well-organized folder structure
+- 🔧 **ESLint + Prettier** - Code linting and formatting
+- 📱 **Multi-platform** - iOS, Android, and Web support
 
 ## Project Structure
 
+```bash
+├── app/                          # Expo Router screens and layouts
+│   ├── _layout.tsx               # Root layout with navigation
+│   ├── index.tsx                 # Home screen
+│   ├── profile.tsx               # Profile screen
+│   ├── settings.tsx              # Settings screen
+│   ├── (drawer)/                 # Drawer navigation group
+│   ├── auth/                     # Authentication screens
+│   └── global.css               # Global styles
+├── src/                          # Main source code
+│   └── services/                 # Business logic and API services
+│       └── api/                 # API client and services
+├── shared/                       # Shared/reusable code
+│   ├── components/               # Reusable UI components
+│   │   ├── Container.tsx         # Generic container component
+│   │   └── ui/                   # UI component library
+│   │       ├── button/           # Button components
+│   │       ├── drawer/           # Drawer components
+│   │       ├── gluestack-ui-provider/ # GlueStack provider configs
+│   │       ├── select/           # Select components
+│   │       └── toast/            # Toast components
+│   ├── constants/                # App constants and configuration
+│   ├── hooks/                    # Custom React hooks
+│   ├── lib/                      # Third-party integrations and utilities
+│   ├── types/                    # TypeScript type definitions
+│   └── utils/                    # Utility functions
+├── assets/                       # Static assets (icons, images, etc.)
+├── node_modules/                 # Dependencies
+├── app.config.js                 # Expo configuration
+├── babel.config.js               # Babel configuration
+├── tailwind.config.js            # TailwindCSS configuration
+├── tsconfig.json                 # TypeScript configuration
+├── package.json                  # Project dependencies and scripts
+└── README.md                     # This file
 ```
-├── app/                    # Expo Router screens
-│   ├── _layout.tsx        # Root layout with navigation
-│   ├── index.tsx          # Home screen
-│   ├── settings.tsx       # Settings screen
-│   └── profile.tsx        # Profile screen
-├── src/                   # Main source code
-│   └── services/          # API services
-│       └── api/          # Axios services and API clients
-├── shared/                # Shared/reusable code
-│   ├── components/       # Reusable UI components
-│   │   ├── Container.tsx # Generic container component
-│   │   └── ui/          # UI component library
-│   ├── hooks/           # Custom React hooks
-│   ├── utils/           # Utility functions
-│   ├── constants/       # App constants and configuration
-│   ├── types/           # TypeScript type definitions
-│   └── lib/             # Third-party integrations (zustand, zod)
-├── assets/              # Static assets
-├── android/             # Android native code
-└── ios/                 # iOS native code
-```
+
+## Key Dependencies
+
+### Core Framework
+- **React**: 19.1.0
+- **React Native**: 0.81.4
+- **Expo**: ~54.0.10
+- **TypeScript**: ~5.9.2
+
+### Navigation & Routing
+- **Expo Router**: ~6.0.8
+- **React Navigation**: 7.1.8 (Native), 7.5.0 (Drawer)
+
+### Styling & UI
+- **NativeWind**: ^4.2.1
+- **GlueStack UI**: ^3.0.10
+- **Tailwind Variants**: ^0.1.20
+- **React Native Reanimated**: ~4.1.0
+
+### Development Tools
+- **ESLint**: ^9.36.0 with multiple plugins
+- **Prettier**: ^3.6.2 with Tailwind plugin
+- **TypeScript ESLint**: ^8.44.1
 
 ## Getting Started
 
@@ -53,6 +95,30 @@ A clean, generic Expo React Native boilerplate with Expo Router, ready for devel
    pnpm ios      # iOS
    pnpm web      # Web
    ```
+
+## Configuration
+
+### Expo Configuration (`app.config.js`)
+- App name, version, and bundle identifiers
+- Platform-specific settings for iOS and Android
+- Asset bundle patterns and splash screen configuration
+- Plugin configuration for Expo Router
+
+### TailwindCSS Configuration (`tailwind.config.js`)
+- NativeWind preset for React Native compatibility
+- Custom font families (Roboto Condensed variants)
+- Content paths for purging unused styles
+
+### TypeScript Configuration (`tsconfig.json`)
+- Strict type checking enabled
+- Path aliases: `@/*` maps to `./src/*`
+- Expo TypeScript base configuration
+
+### ESLint & Prettier
+- Modern ESLint 9.x with multiple plugins
+- Airbnb extended rules, Expo config, and Prettier integration
+- TypeScript and React-specific linting rules
+- Automatic code formatting with Prettier and Tailwind plugin
 
 ## Ready for Integration
 
@@ -76,11 +142,12 @@ This boilerplate is ready for the following integrations:
 - Place custom hooks in `shared/hooks/`
 - Use the path aliases defined in `tsconfig.json` for clean imports
 
-## Scripts
+## Available Scripts
 
-- `pnpm start` - Start development server
-- `pnpm android` - Run on Android
-- `pnpm ios` - Run on iOS
-- `pnpm web` - Run on Web
-- `pnpm lint` - Lint code
-- `pnpm format` - Format code
+- `pnpm start` - Start the Expo development server
+- `pnpm android` - Run on Android emulator/device
+- `pnpm ios` - Run on iOS simulator/device
+- `pnpm web` - Run in web browser
+- `pnpm prebuild` - Prebuild the app for native platforms
+- `pnpm lint` - Lint code with ESLint and check formatting with Prettier
+- `pnpm format` - Fix ESLint issues and format code with Prettier
