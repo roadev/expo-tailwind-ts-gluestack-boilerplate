@@ -1,0 +1,3 @@
+ignoredBuiltDependencies:
+  - unrs-resolver
+# minimumReleaseAge: 60
