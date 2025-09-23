@@ -12,9 +12,7 @@ A modern, feature-rich Expo React Native boilerplate with TypeScript, TailwindCS
 - 🎯 **React Navigation 7** - Latest navigation with drawer support
 - ⚡ **React Native Reanimated 4.1** - High-performance animations
 - 🎨 **Tailwind Variants** - Type-safe styling utilities
-- 📦 **Modular Architecture** - Well-organized folder structure
 - 🔧 **ESLint + Prettier** - Code linting and formatting
-- 📱 **Multi-platform** - iOS, Android, and Web support
 
 ## Project Structure
 
@@ -22,8 +20,6 @@ A modern, feature-rich Expo React Native boilerplate with TypeScript, TailwindCS
 ├── app/                          # Expo Router screens and layouts
 │   ├── _layout.tsx               # Root layout with navigation
 │   ├── index.tsx                 # Home screen
-│   ├── profile.tsx               # Profile screen
-│   ├── settings.tsx              # Settings screen
 │   ├── (drawer)/                 # Drawer navigation group
 │   ├── auth/                     # Authentication screens
 │   └── global.css               # Global styles
@@ -45,13 +41,10 @@ A modern, feature-rich Expo React Native boilerplate with TypeScript, TailwindCS
 │   ├── types/                    # TypeScript type definitions
 │   └── utils/                    # Utility functions
 ├── assets/                       # Static assets (icons, images, etc.)
-├── node_modules/                 # Dependencies
 ├── app.config.js                 # Expo configuration
 ├── babel.config.js               # Babel configuration
 ├── tailwind.config.js            # TailwindCSS configuration
 ├── tsconfig.json                 # TypeScript configuration
-├── package.json                  # Project dependencies and scripts
-└── README.md                     # This file
 ```
 
 ## Key Dependencies
@@ -119,16 +112,6 @@ A modern, feature-rich Expo React Native boilerplate with TypeScript, TailwindCS
 - Airbnb extended rules, Expo config, and Prettier integration
 - TypeScript and React-specific linting rules
 - Automatic code formatting with Prettier and Tailwind plugin
-
-## Ready for Integration
-
-This boilerplate is ready for the following integrations:
-
-- **State Management**: Add Zustand stores in `shared/lib/stores/`
-- **API Client**: Add axios configuration in `shared/lib/axios.ts`
-- **Validation**: Add Zod schemas in `shared/lib/schemas/`
-- **Custom Hooks**: Add React hooks in `shared/hooks/`
-- **Services**: Add API services in `src/services/api/`
 
 ## Development Guidelines
 
