@@ -8,23 +8,27 @@ export default function Settings() {
         <Text className="mb-6 text-2xl font-bold text-gray-800">Settings</Text>
 
         <View className="space-y-4">
-          <View className="bg-gray-50 p-4 rounded-lg">
-            <Text className="text-lg font-semibold text-gray-700 mb-2">Account Settings</Text>
-            <Text className="text-gray-600">Manage your account preferences and security settings.</Text>
+          <View className="rounded-lg bg-gray-50 p-4">
+            <Text className="mb-2 text-lg font-semibold text-gray-700">Account Settings</Text>
+            <Text className="text-gray-600">
+              Manage your account preferences and security settings.
+            </Text>
           </View>
 
-          <View className="bg-gray-50 p-4 rounded-lg">
-            <Text className="text-lg font-semibold text-gray-700 mb-2">Notifications</Text>
+          <View className="rounded-lg bg-gray-50 p-4">
+            <Text className="mb-2 text-lg font-semibold text-gray-700">Notifications</Text>
             <Text className="text-gray-600">Configure how and when you receive notifications.</Text>
           </View>
 
-          <View className="bg-gray-50 p-4 rounded-lg">
-            <Text className="text-lg font-semibold text-gray-700 mb-2">Privacy</Text>
-            <Text className="text-gray-600">Control your privacy and data sharing preferences.</Text>
+          <View className="rounded-lg bg-gray-50 p-4">
+            <Text className="mb-2 text-lg font-semibold text-gray-700">Privacy</Text>
+            <Text className="text-gray-600">
+              Control your privacy and data sharing preferences.
+            </Text>
           </View>
 
-          <View className="bg-gray-50 p-4 rounded-lg">
-            <Text className="text-lg font-semibold text-gray-700 mb-2">About</Text>
+          <View className="rounded-lg bg-gray-50 p-4">
+            <Text className="mb-2 text-lg font-semibold text-gray-700">About</Text>
             <Text className="text-gray-600">App version and information.</Text>
           </View>
         </View>

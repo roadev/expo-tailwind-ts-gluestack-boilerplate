@@ -94,6 +94,22 @@ const prettierConfig = [
 export default [
   // Ignore .gitignore files/folder in eslint
   includeIgnoreFile(gitignorePath),
+  // Ignore config files
+  {
+    ignores: [
+      '*.config.js',
+      '*.config.mjs',
+      '*.config.ts',
+      'babel.config.js',
+      'metro.config.js',
+      'app.config.js',
+      'tailwind.config.js',
+      'prettier.config.js',
+      'tsconfig.json',
+      'package.json',
+      '.nvmrc',
+    ],
+  },
   // Javascript Config
   ...jsConfig,
   // React Config
