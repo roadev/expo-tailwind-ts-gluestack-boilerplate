@@ -12,7 +12,7 @@ export default {
     experiments: {
       tsconfigPaths: true,
     },
-    plugins: ['expo-router'],
+    plugins: ['expo-router', 'expo-font'],
     orientation: 'portrait',
     icon: './assets/icon.png',
     userInterfaceStyle: 'light',
