@@ -1,29 +1,32 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
+import { Button, ButtonText } from '@/components/ui/button';
+import { Heading } from '@/components/ui/heading';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import Container from '@/shared/components/Container';
+import useTranslation from '@/shared/hooks/useTranslation';
 
 export default function Home() {
   const router = useRouter();
+  const { t } = useTranslation();
 
   return (
-    <ScrollView className="flex-1 bg-white">
-      <View className="flex-1 items-center justify-center p-6">
-        <Text className="mb-8 text-3xl font-bold text-gray-800">Welcome to MyApp</Text>
+    <Container>
+      <VStack className="flex-1 justify-center" space="xl">
+        <VStack space="sm">
+          <Heading size="3xl">{t('home.title', { appName: t('common.appName') })}</Heading>
+          <Text className="text-muted-foreground">{t('home.subtitle')}</Text>
+        </VStack>
 
-        <View className="w-full max-w-sm space-y-4">
-          <TouchableOpacity
-            className="items-center rounded-lg bg-blue-500 px-6 py-4"
-            onPress={() => router.push('/profile')}>
-            <Text className="text-lg font-semibold text-white">Go to Profile</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            className="items-center rounded-lg bg-green-500 px-6 py-4"
-            onPress={() => router.push('/settings')}>
-            <Text className="text-lg font-semibold text-white">Go to Settings</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </ScrollView>
+        <VStack space="md">
+          <Button onPress={() => router.push('/profile')} size="lg">
+            <ButtonText>{t('home.goToProfile')}</ButtonText>
+          </Button>
+          <Button onPress={() => router.push('/settings')} size="lg" variant="secondary">
+            <ButtonText>{t('home.goToSettings')}</ButtonText>
+          </Button>
+        </VStack>
+      </VStack>
+    </Container>
   );
 }

@@ -1,3 +1,44 @@
-ignoredBuiltDependencies:
-  - unrs-resolver
-# minimumReleaseAge: 60
+# react-native-css (the engine under NativeWind v5) is built against
+# lightningcss 1.30.1. From 1.31 the native binding's serde shape changed, and
+# compiling global.css fails with "failed to deserialize; expected an
+# object-like struct named Specifier". Keep this pinned until NativeWind v5 is
+# released against a newer lightningcss.
+overrides:
+  lightningcss: 1.30.1
+
+# pnpm 11 refuses, by default, to install a package published in the last 24h —
+# a supply-chain guard, on by default and not read from any config file, so CI
+# enforces it too. Expo ships same-day patch releases, so the versions below sit
+# inside that window and every one of them has to be vouched for by name or
+# `pnpm install` fails on a cold machine (locally it can still pass from the
+# verified-lockfile cache, which is why this only shows up in CI).
+#
+# pnpm regenerates this list on `pnpm install` after a dependency bump. Once
+# these versions are more than 24h old the list is dead weight and the whole
+# block can be deleted.
+minimumReleaseAgeExclude:
+  - '@expo/cli@57.0.19'
+  - '@expo/inline-modules@0.1.7'
+  - '@expo/local-build-cache-provider@57.0.8'
+  - '@expo/log-box@57.0.4'
+  - '@expo/metro-config@57.0.11'
+  - '@expo/metro-runtime@57.0.14'
+  - '@expo/prebuild-config@57.0.15'
+  - '@expo/router-server@57.0.8'
+  - '@expo/ui@57.0.14'
+  - babel-preset-expo@57.0.9
+  - eslint-config-expo@57.0.2
+  - expo-asset@57.0.15
+  - expo-constants@57.0.15
+  - expo-file-system@57.0.6
+  - expo-linking@57.0.8
+  - expo-modules-autolinking@57.0.12
+  - expo-modules-core@57.0.14
+  - expo-modules-jsi@57.0.6
+  - expo-router@57.0.17
+  - expo-system-ui@57.0.3
+  - expo@57.0.17
+
+# unrs-resolver ships a native binding used by eslint-import-resolver-typescript.
+allowBuilds:
+  unrs-resolver: true

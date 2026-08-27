@@ -13,6 +13,7 @@ import js from '@eslint/js';
 import { configs, plugins, rules } from 'eslint-config-airbnb-extended';
 import { rules as prettierConfigRules } from 'eslint-config-prettier';
 import prettierPlugin from 'eslint-plugin-prettier';
+import noBarrelFiles from 'eslint-plugin-no-barrel-files';
 
 const compat = new FlatCompat({
   baseDirectory: import.meta.dirname,
@@ -55,6 +56,15 @@ const typescriptConfig = [
   ...configs.base.typescript,
   // Airbnb React TypeScript Config
   ...configs.react.typescript,
+  // TypeScript specific overrides
+  {
+    name: 'typescript/overrides',
+    files: ['**/*.{ts,tsx}'],
+    rules: {
+      // Optional props already express "may be absent" in TypeScript.
+      'react/require-default-props': 'off',
+    },
+  },
 ];
 
 const reactNativeOverrides = [
@@ -108,6 +118,9 @@ export default [
       'tsconfig.json',
       'package.json',
       '.nvmrc',
+      // Vendored from gluestack-ui via `npx gluestack-ui add`. Kept
+      // byte-identical to upstream so re-running the CLI produces no diff.
+      'src/components/ui/**',
     ],
   },
   // Javascript Config
@@ -124,4 +137,23 @@ export default [
   ...typescriptConfig,
   // Prettier Config
   ...prettierConfig,
+  // No barrel files: import from the module that defines the symbol, so Metro
+  // does not pull a whole folder into the bundle for one import.
+  {
+    name: 'no-barrel-files/config',
+    plugins: {
+      'no-barrel-files': noBarrelFiles,
+    },
+    rules: {
+      'no-barrel-files/no-barrel-files': 'error',
+    },
+  },
+  // Tests
+  {
+    name: 'jest/overrides',
+    files: ['tests/**/*.{ts,tsx}', '**/*.test.{ts,tsx}', 'jest.setup.js'],
+    rules: {
+      'import-x/no-extraneous-dependencies': 'off',
+    },
+  },
 ];

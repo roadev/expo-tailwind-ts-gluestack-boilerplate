@@ -3,6 +3,9 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "strict": true,
+    "types": [
+      "jest"
+    ],
     "paths": {
       "@/*": [
         "./src/*"
@@ -12,6 +15,15 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    "nativewind-env.d.ts"
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts",
+    "nativewind-env.d.ts",
+    "react-native-css-env.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".expo",
+    "src/components/ui"
   ]
 }
