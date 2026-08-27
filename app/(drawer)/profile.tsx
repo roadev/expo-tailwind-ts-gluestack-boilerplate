@@ -1,39 +1,40 @@
-import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { Avatar, AvatarFallbackText } from '@/components/ui/avatar';
+import { Heading } from '@/components/ui/heading';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import Container from '@/shared/components/Container';
+import SectionCard from '@/shared/components/SectionCard';
+import useTranslation from '@/shared/hooks/useTranslation';
+import useAuthStore from '@/store/authStore';
+
+const PLACEHOLDER_USER = { name: 'John Doe', email: 'john.doe@example.com' };
 
 export default function Profile() {
+  const { t } = useTranslation();
+  // Falls back to a placeholder so the screen renders before anyone signs in.
+  const user = useAuthStore((state) => state.user) ?? PLACEHOLDER_USER;
+
   return (
-    <ScrollView className="flex-1 bg-white">
-      <View className="p-6">
-        <Text className="mb-6 text-2xl font-bold text-gray-800">Profile</Text>
+    <Container>
+      <VStack space="xl">
+        <Heading size="2xl">{t('profile.title')}</Heading>
 
-        <View className="mb-8 items-center">
-          <View className="mb-4 h-20 w-20 items-center justify-center rounded-full bg-gray-300">
-            <Text className="text-xl font-bold text-gray-600">JD</Text>
-          </View>
-          <Text className="text-lg font-semibold text-gray-800">John Doe</Text>
-          <Text className="text-gray-600">john.doe@example.com</Text>
-        </View>
+        <VStack className="items-center" space="xs">
+          <Avatar className="h-16 w-16">
+            <AvatarFallbackText>{user.name}</AvatarFallbackText>
+          </Avatar>
+          <Heading size="md">{user.name}</Heading>
+          <Text className="text-muted-foreground" size="sm">
+            {user.email}
+          </Text>
+        </VStack>
 
-        <View className="space-y-4">
-          <View className="rounded-lg bg-gray-50 p-4">
-            <Text className="mb-2 text-lg font-semibold text-gray-700">Personal Information</Text>
-            <Text className="text-gray-600">
-              Update your personal details and contact information.
-            </Text>
-          </View>
-
-          <View className="rounded-lg bg-gray-50 p-4">
-            <Text className="mb-2 text-lg font-semibold text-gray-700">Preferences</Text>
-            <Text className="text-gray-600">Customize your app experience and preferences.</Text>
-          </View>
-
-          <View className="rounded-lg bg-gray-50 p-4">
-            <Text className="mb-2 text-lg font-semibold text-gray-700">Activity</Text>
-            <Text className="text-gray-600">View your activity history and statistics.</Text>
-          </View>
-        </View>
-      </View>
-    </ScrollView>
+        <VStack space="md">
+          <SectionCard body={t('profile.personalInfoBody')} title={t('profile.personalInfo')} />
+          <SectionCard body={t('profile.preferencesBody')} title={t('profile.preferences')} />
+          <SectionCard body={t('profile.activityBody')} title={t('profile.activity')} />
+        </VStack>
+      </VStack>
+    </Container>
   );
 }

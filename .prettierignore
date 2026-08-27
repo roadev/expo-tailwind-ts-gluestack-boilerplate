@@ -1,0 +1,10 @@
+node_modules
+.expo
+dist
+android
+ios
+pnpm-lock.yaml
+
+# Vendored from gluestack-ui via `npx gluestack-ui add`. Left byte-identical to
+# upstream so re-running the CLI produces no diff.
+src/components/ui

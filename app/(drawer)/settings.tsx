@@ -1,38 +1,67 @@
-import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { Button, ButtonText } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Heading } from '@/components/ui/heading';
+import { HStack } from '@/components/ui/hstack';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import Container from '@/shared/components/Container';
+import type { TranslationKey } from '@/shared/i18n';
+import SectionCard from '@/shared/components/SectionCard';
+import useColorMode from '@/shared/hooks/useColorMode';
+import useTranslation from '@/shared/hooks/useTranslation';
+import type { ColorMode } from '@/store/uiStore';
+
+interface ThemeOption {
+  value: ColorMode;
+  labelKey: TranslationKey;
+}
+
+const MODES: ThemeOption[] = [
+  { value: 'light', labelKey: 'settings.theme.light' },
+  { value: 'dark', labelKey: 'settings.theme.dark' },
+  { value: 'system', labelKey: 'settings.theme.system' },
+];
 
 export default function Settings() {
+  const { t } = useTranslation();
+  const { colorMode, setColorMode } = useColorMode();
+
   return (
-    <ScrollView className="flex-1 bg-white">
-      <View className="p-6">
-        <Text className="mb-6 text-2xl font-bold text-gray-800">Settings</Text>
+    <Container>
+      <VStack space="xl">
+        <Heading size="2xl">{t('settings.title')}</Heading>
 
-        <View className="space-y-4">
-          <View className="rounded-lg bg-gray-50 p-4">
-            <Text className="mb-2 text-lg font-semibold text-gray-700">Account Settings</Text>
-            <Text className="text-gray-600">
-              Manage your account preferences and security settings.
-            </Text>
-          </View>
+        <VStack space="md">
+          <Card className="bg-secondary">
+            <VStack space="md">
+              <VStack space="xs">
+                <Heading className="text-secondary-foreground" size="sm">
+                  {t('settings.appearance')}
+                </Heading>
+                <Text className="text-muted-foreground" size="sm">
+                  {t('settings.appearanceBody')}
+                </Text>
+              </VStack>
+              <HStack space="sm">
+                {MODES.map((mode) => (
+                  <Button
+                    key={mode.value}
+                    onPress={() => setColorMode(mode.value)}
+                    size="sm"
+                    variant={colorMode === mode.value ? 'default' : 'outline'}>
+                    <ButtonText>{t(mode.labelKey)}</ButtonText>
+                  </Button>
+                ))}
+              </HStack>
+            </VStack>
+          </Card>
 
-          <View className="rounded-lg bg-gray-50 p-4">
-            <Text className="mb-2 text-lg font-semibold text-gray-700">Notifications</Text>
-            <Text className="text-gray-600">Configure how and when you receive notifications.</Text>
-          </View>
-
-          <View className="rounded-lg bg-gray-50 p-4">
-            <Text className="mb-2 text-lg font-semibold text-gray-700">Privacy</Text>
-            <Text className="text-gray-600">
-              Control your privacy and data sharing preferences.
-            </Text>
-          </View>
-
-          <View className="rounded-lg bg-gray-50 p-4">
-            <Text className="mb-2 text-lg font-semibold text-gray-700">About</Text>
-            <Text className="text-gray-600">App version and information.</Text>
-          </View>
-        </View>
-      </View>
-    </ScrollView>
+          <SectionCard body={t('settings.accountBody')} title={t('settings.account')} />
+          <SectionCard body={t('settings.notificationsBody')} title={t('settings.notifications')} />
+          <SectionCard body={t('settings.privacyBody')} title={t('settings.privacy')} />
+          <SectionCard body={t('settings.aboutBody')} title={t('settings.about')} />
+        </VStack>
+      </VStack>
+    </Container>
   );
 }
