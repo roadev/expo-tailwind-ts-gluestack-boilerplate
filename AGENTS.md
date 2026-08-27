@@ -31,6 +31,11 @@ Run `pnpm typecheck && pnpm lint && pnpm test` before opening a PR — CI runs a
   lint, format, and typecheck roots. Add components with
   `npx gluestack-ui@latest add <name> --path src/components/ui`. App-owned UI belongs in
   `src/shared/components/`.
+- **Give `GluestackUIProvider` a resolved mode**, never `'system'`. Its system branch only
+  subscribes to future OS changes, so on web the previous `.light`/`.dark` class stays on
+  `<html>` and outranks the media-query tokens; on native it also casts `'system'` to
+  `ColorSchemeName`, which only accepts `'light' | 'dark' | 'unspecified'`. `app/_layout.tsx`
+  passes `resolvedMode` and undoes the native pin — see the comment there.
 - **gluestack v5 props are shadcn-shaped.** `<Button variant="secondary" size="lg">`, not v4's
   `action`/`variant="solid"`. `Card` takes `size` only; `Avatar` has no `size` — use classes.
 - **No `tailwind.config.js`.** Tailwind v4 is CSS-first — design tokens live in `@theme`

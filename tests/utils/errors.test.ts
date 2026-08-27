@@ -4,7 +4,9 @@ describe('kindFromStatus', () => {
   const cases: [number | undefined, AppErrorKind][] = [
     [undefined, 'network'],
     [401, 'unauthorized'],
-    [403, 'unauthorized'],
+    // A 403 is an authorization decision about one resource, not a dead
+    // session: folding it into 'unauthorized' is what used to sign the user out.
+    [403, 'forbidden'],
     [400, 'validation'],
     [422, 'validation'],
     [500, 'server'],
@@ -20,6 +22,7 @@ describe('kindFromStatus', () => {
 describe('AppError', () => {
   it('exposes a translation key for the UI', () => {
     expect(new AppError('unauthorized').messageKey).toBe('errors.unauthorized');
+    expect(new AppError('forbidden').messageKey).toBe('errors.forbidden');
     expect(new AppError('server').messageKey).toBe('errors.unexpected');
   });
 

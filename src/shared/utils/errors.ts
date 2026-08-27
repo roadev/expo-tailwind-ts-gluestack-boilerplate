@@ -1,9 +1,11 @@
-export type AppErrorKind = 'network' | 'unauthorized' | 'validation' | 'server' | 'unknown';
+export type AppErrorKind =
+  'network' | 'unauthorized' | 'forbidden' | 'validation' | 'server' | 'unknown';
 
 /** Translation key each error kind maps to, so screens never build error copy. */
 const MESSAGE_KEYS = {
   network: 'errors.network',
   unauthorized: 'errors.unauthorized',
+  forbidden: 'errors.forbidden',
   validation: 'errors.unexpected',
   server: 'errors.unexpected',
   unknown: 'errors.unexpected',
@@ -42,7 +44,11 @@ export class AppError extends Error {
 /** Maps an HTTP status to the error kind the UI reacts to. */
 export function kindFromStatus(status?: number): AppErrorKind {
   if (status === undefined) return 'network';
-  if (status === 401 || status === 403) return 'unauthorized';
+  // 401 and 403 are different failures: 401 means the credentials are not
+  // valid, 403 means they are but the account may not touch this resource.
+  // Only the first one says anything about the session.
+  if (status === 401) return 'unauthorized';
+  if (status === 403) return 'forbidden';
   if (status === 422 || status === 400) return 'validation';
   if (status >= 500) return 'server';
   return 'unknown';

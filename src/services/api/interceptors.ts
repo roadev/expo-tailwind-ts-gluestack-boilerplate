@@ -22,9 +22,10 @@ export default function attachInterceptors(client: AxiosInstance): void {
       const status = error?.response?.status as number | undefined;
       const kind = kindFromStatus(status);
 
-      // A 401 means the token the request just used is dead; keeping it around
-      // would make every later request fail the same way.
-      if (kind === 'unauthorized') {
+      // Only a 401 says the token itself is dead; keeping it would make every
+      // later request fail the same way. A 403 is an authorization decision
+      // about one resource, so the session stays exactly as it was.
+      if (status === 401) {
         useAuthStore.getState().signOut();
       }
 

@@ -48,6 +48,7 @@ const en = {
   errors: {
     network: 'We could not reach the server. Check your connection and try again.',
     unauthorized: 'Your session expired. Please sign in again.',
+    forbidden: 'You do not have access to this.',
     unexpected: 'Something went wrong. Please try again.',
   },
 } as const;

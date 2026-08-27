@@ -51,6 +51,7 @@ const es: Localized<typeof en> = {
   errors: {
     network: 'No pudimos conectar con el servidor. Revisa tu conexión e inténtalo de nuevo.',
     unauthorized: 'Tu sesión expiró. Inicia sesión de nuevo.',
+    forbidden: 'No tienes acceso a esto.',
     unexpected: 'Algo salió mal. Inténtalo de nuevo.',
   },
 };
